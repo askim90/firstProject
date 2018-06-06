@@ -10,23 +10,22 @@
           integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
           crossorigin="anonymous"></script>
     <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body>
     <div>Name</div>
     <input class="name" type="text" name="firstInputField">
     <button class="setData">Save</button>
-    <button class="getData">Load</button>
+    <button class="getData">Find</button>
     <button class="showAll">Show All</button>
+    <button class="remove">Remove</button>
     <div>Code</div>
     <div>
-        <textarea style="height: 300px; width: 550px"></textarea>
+        <textarea placeholder="Type code here..."></textarea>
     </div>
-    <pre><code class="output"></code></pre>
+    <div id="message"></div>
     
     <div id="display"></div>
-
-    <div class="debug"></div>
-
 </body>
 </html>

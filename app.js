@@ -2,14 +2,26 @@ $(document).ready(function() {
     $('.setData').on('click', function() {
         let textFieldValue = $('.name').val();
         let textareaValue = $('textarea').val();
-        //$('.debug').text(textFieldValue);
         localStorage.setItem(textFieldValue, textareaValue);
+        $('#message').text(`Saved ${textFieldValue} successfully. Press 'Show All' to refresh.`);
     });
 
     $('.getData').on('click', function() {
         let textFieldValue = $('.name').val();
-        let retrievedData = localStorage.getItem(textFieldValue);
-        $('.output').text(retrievedData);
+        let keys = [];
+        
+        for (let i = 0; i < localStorage.length; i++) {
+            keys.push(localStorage.key(i));
+        }
+
+        if (keys.includes(textFieldValue)) {
+            $('html, body').animate({
+                scrollTop: $(`#${textFieldValue}`).offset().top
+            }, 500);
+        } else {
+            $("#message").text(`Error: Could not find ${textFieldValue}.`);
+        }
+
     });
 
     $('.showAll').click(function() {
@@ -24,12 +36,26 @@ $(document).ready(function() {
         
         keys.forEach(e => {
             let code = localStorage.getItem(e);
-            $('#display').append(`<li>${e}</li>`);
+            $('#display').append(`<li id="${e}">${e}</li>`);
             $('#display').append(`<pre><code>${code}</code></pre>`);
         });
+
+        $('#message').text('Showing current list of snippets.');
     });
-    // $('.textField').on('keyup', function() {
-    //     let textFieldValue = $('.textField').val();
-    //     $('.debug').text(textFieldValue);
-    // });
+
+    $('.remove').click(function() {
+        let textFieldValue = $('.name').val();
+        let keys = [];
+        
+        for (let i = 0; i < localStorage.length; i++) {
+            keys.push(localStorage.key(i));
+        }
+
+        if (keys.includes(textFieldValue)) {
+            localStorage.removeItem(textFieldValue);
+            $('#message').text(`Removed ${textFieldValue} successfully. Press 'Show All' to refresh.`);
+        } else {
+            $("#message").text(`Error: ${textFieldValue} does not exist.`);
+        }
+    });
 });

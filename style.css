@@ -1,0 +1,25 @@
+body {
+    background: black;
+    color: silver;
+}
+
+textarea {
+    height: 300px; 
+    width: 550px;
+}
+
+li {
+    color: rgb(28, 199, 221);
+}
+
+.remove {
+    margin-left: 145px;
+}
+
+#message {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 20px;
+    color: gold;
+}
+
